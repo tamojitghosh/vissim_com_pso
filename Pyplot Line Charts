@@ -1,0 +1,26 @@
+import pandas as pd
+import plotly.offline as plo
+import plotly.graph_objs as pgo
+
+file = pd.read_excel(r"C:\Users\Tamojit\OneDrive - Queensland University of "
+                     r"Technology\TG\Research\Thesis\Codes\Cycle_by_Cycle_Queue_Estimation\1 Lane\PR 0.1\Summary.xlsx",
+                     0)
+
+data_1 = pgo.Scatter(
+    x=file["Time"],
+    y=file["Partial Queue"],
+    mode='lines',
+    name='Partial Queue'
+)
+
+data_2 = pgo.Scatter(
+    x=file["Time"],
+    y=file["Actual Queue"],
+    mode='lines',
+    name='Actual Queue'
+)
+
+data = [data_1, data_2]
+layout = pgo.Layout(title='Actual Queue vs Partial Queue')
+figure = pgo.Figure(data=data, layout=layout)
+plo.plot(figure)
